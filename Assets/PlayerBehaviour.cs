@@ -29,7 +29,7 @@ public class PlayerBehaviour : MonoBehaviour
         // Shooting
         if (Input.GetButton("Fire1"))
         {
-            Instantiate(bulletPrefab, transform.position, transform.rotation);
+            Instantiate(bulletPrefab, transform.position + transform.forward, transform.rotation);
         }
     }
 }
