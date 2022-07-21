@@ -19,8 +19,12 @@ public class PlayerBehaviour : MonoBehaviour
     {
         // Movement
         float maxDistanceToMove = speed * Time.deltaTime;
-        transform.position += Input.GetAxis("Vertical") * maxDistanceToMove * Vector3.forward;
-        transform.position += Input.GetAxis("Horizontal") * maxDistanceToMove * Vector3.right;
+        Vector3 inputVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 movementVector = inputVector * maxDistanceToMove;
+        Vector3 newPosition = transform.position + movementVector;
+
+        transform.LookAt(newPosition);
+        transform.position = newPosition;
 
         // Shooting
         if (Input.GetButton("Fire1"))
