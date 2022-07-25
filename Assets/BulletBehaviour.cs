@@ -6,6 +6,8 @@ public class BulletBehaviour : MonoBehaviour
 {
 
     public float bulletSpeed;
+    public float secondsUntilDestroyed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,17 @@ public class BulletBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        secondsUntilDestroyed -= Time.deltaTime;
+
+        if (secondsUntilDestroyed < 1)
+        {
+            transform.localScale *= secondsUntilDestroyed;
+        }
+
+        if (secondsUntilDestroyed < 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision thisCollision)
