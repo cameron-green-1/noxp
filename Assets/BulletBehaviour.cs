@@ -6,16 +6,27 @@ public class BulletBehaviour : MonoBehaviour
 {
 
     public float bulletSpeed;
-
     // Start is called before the first frame update
     void Start()
     {
-
+        Rigidbody ourRigidBody = GetComponent<Rigidbody>();
+        ourRigidBody.velocity = transform.forward * bulletSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.forward * bulletSpeed * Time.deltaTime;
+        
+    }
+
+    private void OnCollisionEnter(Collision thisCollision)
+    {
+        GameObject enemyGameObject = thisCollision.gameObject;
+
+        if (enemyGameObject.GetComponent<EnemyBehaviour>() != null)
+        {
+            Destroy(enemyGameObject);
+            Destroy(gameObject);
+        }
     }
 }

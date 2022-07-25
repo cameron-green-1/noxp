@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets/BulletBehaviour.cs" />
     <Compile Include="Assets/PlayerBehaviour.cs" />
+    <Compile Include="Assets/EnemyBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

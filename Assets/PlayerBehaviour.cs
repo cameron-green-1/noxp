@@ -17,15 +17,15 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Movement
-        float maxDistanceToMove = speed * Time.deltaTime;
         Vector3 inputVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        Vector3 movementVector = inputVector * maxDistanceToMove;
-        Vector3 newPosition = transform.position + movementVector;
+        Rigidbody ourRigidBody = GetComponent<Rigidbody>();
+        ourRigidBody.velocity = inputVector * speed;
+
+        // Movement
+        Vector3 newPosition = transform.position + inputVector;
 
         transform.LookAt(newPosition);
-        transform.position = newPosition;
-
+        
         // Shooting
         if (Input.GetButton("Fire1"))
         {
